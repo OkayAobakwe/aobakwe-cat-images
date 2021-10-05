@@ -2,6 +2,7 @@ import { Container, Flex, Heading } from "@chakra-ui/layout"
 import React, { FC, useEffect, useState } from "react"
 import { Button } from "@chakra-ui/button"
 import NextLink from "next/link"
+import { NavBar } from "../../components/Navbar"
 
 const Categories: FC = () => {
   const [categories, setCategories] = useState<any>()
@@ -18,6 +19,7 @@ const Categories: FC = () => {
  
   return(
     <>
+      <NavBar />
       <Container centerContent>
         <Heading>Categories</Heading>
       </Container>
