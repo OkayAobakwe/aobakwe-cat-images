@@ -3,18 +3,17 @@ import React, { FC, useEffect, useState } from "react"
 import { Button } from "@chakra-ui/button"
 import NextLink from "next/link"
 import { NavBar } from "../../components/Navbar"
+import axios from "axios"
+import { CAT_API, API_HEADERS } from "../../constants/index"
 
 const Categories: FC = () => {
   const [categories, setCategories] = useState<any>()
   useEffect(() => {
-    fetch("https://api.thecatapi.com/v1/categories", {
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": "90316368-18c6-4271-aeaf-ef3b88cb5f03"
-      }
+    axios.get(`${CAT_API}/categories`, {
+      headers: API_HEADERS
     })
-    .then(data => data.json())
-    .then(data => setCategories(data))
+    .then(res => setCategories(res.data))
+    .catch((err) => {})
   }, [])
  
   return(

@@ -3,6 +3,8 @@ import React, { FC, useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { NavBar } from "../../components/Navbar"
 import { StarIcon } from "@chakra-ui/icons"
+import axios from "axios"
+import { CAT_API, API_HEADERS } from "../../constants/index"
 
 const CatSearch: FC = () => {
   const router = useRouter()
@@ -15,30 +17,17 @@ const CatSearch: FC = () => {
     if(localStorage.getItem("favouriteCats") !== null){
       setFavouriteCats(JSON.parse(localStorage.getItem("favouriteCats")))
     }
-    !routerCheck ?
-      fetch(`https://api.thecatapi.com/v1/images/search?breed_ids=${router?.query?.id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": "90316368-18c6-4271-aeaf-ef3b88cb5f03"
-        }
-      })
-      .then(data => data.json())
-      .then(data => {
-        setCatImages(data)
-        setCatDescription(data[0]?.breeds[0]?.description)
-      })
-    :
-      fetch(`https://api.thecatapi.com/v1/images/search?category_ids=${router?.query?.id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": "90316368-18c6-4271-aeaf-ef3b88cb5f03"
-        }
-      })
-      .then(data => data.json())
-      .then(data => {
-        setCatImages(data)
-        setCatDescription(data[0]?.categories[0]?.name)
-      })
+    axios.get(
+      `${CAT_API}images/search?${!routerCheck? "breed_ids" : "category_ids"}=${router?.query?.id}`, {
+        headers: API_HEADERS
+      }
+    )
+    .then((res) => {
+      setCatImages(res?.data)
+      {!routerCheck ? setCatDescription(res?.data[0]?.breeds[0]?.description) :
+        setCatDescription(res?.data[0]?.categories[0]?.name)}
+    })
+    .catch((err) => {})
   }, [])
   
   return(
