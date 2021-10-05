@@ -4,18 +4,17 @@ import { useRouter } from "next/router"
 import { Button } from "@chakra-ui/button"
 import NextLink from "next/link"
 import { NavBar } from "../../components/Navbar"
+import { CAT_API, API_HEADERS } from "../../constants/index"
+import axios from "axios"
 
 const Breeds: FC = () => {
   const [breeds, setBreeds] = useState<any>()
   useEffect(() => {
-    fetch("https://api.thecatapi.com/v1/breeds", {
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": "90316368-18c6-4271-aeaf-ef3b88cb5f03"
-      }
+    axios.get(`${CAT_API}breeds`, {
+      headers: API_HEADERS
     })
-    .then(data => data.json())
-    .then(data => setBreeds(data))
+    .then((res) => setBreeds(res.data))
+    .catch((err) => {})
   }, [])
   return(
     <>
