@@ -13,7 +13,7 @@ export const NavBar: FC = ({}) => {
           </Link>
         </NextLink>
       </Flex>
-      <NextLink href="/favorites">
+      <NextLink href="/favourites">
         <Link>
           <Text>Favourites</Text>
         </Link>
