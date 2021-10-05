@@ -7,7 +7,7 @@ const Favourites = () => {
   useEffect(() => {
     setFavouriteCats(JSON.parse(localStorage.getItem("favouriteCats")))
   })
-  console.log(favouriteCats)
+  
   return(
     <>
       <NavBar />

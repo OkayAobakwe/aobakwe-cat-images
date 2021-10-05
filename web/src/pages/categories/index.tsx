@@ -1,6 +1,5 @@
 import { Container, Flex, Heading } from "@chakra-ui/layout"
 import React, { FC, useEffect, useState } from "react"
-import { useRouter } from "next/router"
 import { Button } from "@chakra-ui/button"
 import NextLink from "next/link"
 
