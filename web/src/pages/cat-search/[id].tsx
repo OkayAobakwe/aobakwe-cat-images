@@ -40,7 +40,7 @@ const CatSearch: FC = () => {
         setCatDescription(data[0]?.categories[0]?.name)
       })
   }, [])
-  console.log("fc", favouriteCats)
+  
   return(
     <>
     <NavBar/>
