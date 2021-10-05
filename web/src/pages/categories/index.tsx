@@ -5,9 +5,10 @@ import NextLink from "next/link"
 import { NavBar } from "../../components/Navbar"
 import axios from "axios"
 import { CAT_API, API_HEADERS } from "../../constants/index"
+import { CatProps } from "../cat-search/[id]"
 
 const Categories: FC = () => {
-  const [categories, setCategories] = useState<any>()
+  const [categories, setCategories] = useState<CatProps[]>()
   useEffect(() => {
     axios.get(`${CAT_API}/categories`, {
       headers: API_HEADERS

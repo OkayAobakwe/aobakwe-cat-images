@@ -6,9 +6,10 @@ import NextLink from "next/link"
 import { NavBar } from "../../components/Navbar"
 import { CAT_API, API_HEADERS } from "../../constants/index"
 import axios from "axios"
+import { CatProps} from "../cat-search/[id]"
 
 const Breeds: FC = () => {
-  const [breeds, setBreeds] = useState<any>()
+  const [breeds, setBreeds] = useState<CatProps[]>()
   useEffect(() => {
     axios.get(`${CAT_API}breeds`, {
       headers: API_HEADERS
